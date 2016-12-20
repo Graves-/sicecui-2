@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Sicecui | Administración</title>
+    <link rel="shortcut icon" href="flash.png" type="image/x-icon"/>
+    <link rel="stylesheet" type="text/css" href="https://bootswatch.com/flatly/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.8/angular.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+</head>
+<body ng-app="sicecui">
+	<!-- navbar-->
+	<nav class="navbar navbar-default navbar-fixed-top" style="margin-bottom: 50px;">
+	  <div class="container">
+	    <!-- Brand and toggle get grouped for better mobile display -->
+	    <div class="navbar-header">
+	      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+	      <a class="navbar-brand" href="#">SICECUI</a>
+	    </div>
+
+	    <!-- Collect the nav links, forms, and other content for toggling -->
+	    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+	      <ul class="nav navbar-nav">
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Inscripciones <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	            <li><a href="/inscripcionAlumno">Inscribir Alumno</a></li>
+	            <li><a href="/inscripcionMaestros">Inscribir Maestro</a></li>
+	          </ul>
+	        </li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Listas <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="/listaAlumnos">Lista de Alumnos</a></li>
+	            <li><a href="/listaMaestros">Lista de Maestros</a></li>
+	            <li><a href="/listaMaterias">Lista de Materias</a></li>
+	          </ul>
+	        </li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Modificaciones <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="/modificaAlumno">Modificar Alumno</a></li>
+	            <li><a href="/modificaMaestro">Modificar Maestro</a></li>
+	            <li><a href="/modificaMateria">Modificar Materia</a></li>
+	            <li><a href="/modificaCarrera">Modificar Carrera</a></li>
+	          </ul>
+	        </li>
+	        <li class="dropdown">
+	          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Otros <span class="caret"></span></a>
+	          <ul class="dropdown-menu">
+	          	<li><a href="/asignarMaterias">Asignar Materias</a></li>
+	            <li><a href="/kardex">Consulta de Kardex</a></li>
+	            <li><a href="/pagos">Pagos</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="/home">Inicio</a></li>
+	          </ul>
+	        </li>
+	      </ul>
+	    </div><!-- /.navbar-collapse -->
+	  </div>
+	</nav>
+	
+	{{{body}}}
+
+	
+
+</body>
+</html>

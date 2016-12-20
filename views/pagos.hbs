@@ -1,0 +1,278 @@
+<style type="text/css">
+	input{
+		text-transform: uppercase;
+	}
+</style>
+
+<div class="container" style="padding-top: 80px;" ng-controller="controller-pagos">
+	<div class="page-header">
+	  <h1>Pagos&nbsp;<small>SICECUI</small></h1>
+	</div>
+
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<a href="" class="btn btn-info" style="width: 100%" ng-click="optionSelected = 1"><h3><i class="material-icons">payment</i></h3>&nbsp;Registrar Pago</a>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<a href="" class="btn btn-info" style="width: 100%" ng-click="optionSelected = 2"><h3><i class="material-icons">print</i></h3>Imprimir Recibo</a>
+		</div>
+		<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+			<a href="" class="btn btn-info" style="width: 100%" ng-click="optionSelected = 3"><h3><i class="material-icons">list</i></h3>Ver Registro de Pagos</a>
+		</div>
+	</div>
+
+	<!-- SECCION PARA REGISTRAR PAGO -->	
+	<div class="row" style="padding-top: 50px;" ng-show="optionSelected == 1">
+		<div class="row">
+			<form class="form-horizontal" action="" method="POST">
+				<fieldset>
+				    <legend>Recibo de Pago</legend>
+				    <div class="form-group">
+				    <label for="PersonaID" class="col-lg-2 control-label">Clave de Alumno</label>
+				    <div class="col-lg-6">
+				        <input type="text" class="form-control" id="PersonaID" name="PersonaID" placeholder="Clave de Alumno" readonly="readonly"  ng-model="ClaveAlumno">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="Nombre" class="col-lg-2 control-label">Nombre</label>
+				      <div class="col-lg-6">
+				        <input type="text" class="form-control" id="Nombre" name="Nombre" placeholder="Nombre" ng-model="model_Nombre">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="ApellidoPeterno" class="col-lg-2 control-label">Apellido Paterno</label>
+				      <div class="col-lg-6">
+				        <input type="text" class="form-control" id="ApellidoPeterno" name="ApellidoPeterno" placeholder="Apellido Paterno" required="required" ng-model="model_ApePat">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="ApellidoMaterno" class="col-lg-2 control-label">Apellido Paterno</label>
+				      <div class="col-lg-6">
+				        <input type="text" class="form-control" id="ApellidoMaterno" name="ApellidoMaterno" placeholder="Apellido Materno" required="required" ng-model="model_ApeMat">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="CarreraID" class="col-lg-2 control-label">Licenciatura</label>
+				      <div class="col-lg-6">
+					      	<select class="form-control" id="CarreraID" name="CarreraID"  required="required" ng-change="CarreraSeleccionada()" ng-model="CarreraSelected">
+								<option ng-repeat="carrera in carreras" value="{[{carrera.CarreraID}]}" selected="selected">{[{carrera.Nombre}]}</option>
+							</select>
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="CantidadNum" class="col-lg-2 control-label">Cantidad</label>
+				      <div class="col-lg-3">
+				        <input type="number" class="form-control" id="CantidadNum" name="CantidadNum" placeholder="Cantidad en Número" required="required">
+				      </div>
+				      <div class="col-lg-3">
+				        <input type="text" class="form-control" id="CantidadLetra" name="CantidadLetra" placeholder="Cantidad en Letra" required="required">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <label for="Concepto" class="col-lg-2 control-label">Concepto</label>
+				      <div class="col-lg-6">
+				        <input type="text" class="form-control" id="Concepto" name="Concepto" placeholder="Concepto" required="required">
+				      </div>
+				    </div>
+				    <div class="form-group">
+				      <div class="col-lg-offset-2">
+				        <h4>San José Iturbide, Guanajuato a {[{fecha.getDay()}]} de {[{fecha.getMonth()+1}]} del {[{fecha.getFullYear()}]} .</h4>
+				      </div>
+				    </div>
+				    
+				    <div class="form-group">
+				      <div class="col-lg-10 col-lg-offset-2">
+				        <button type="reset" class="btn btn-default">Cancelar</button>
+				        <button type="button" ng-click="RegistrarClicked($event)" class="btn btn-primary">Registrar</button>
+				      </div>
+				    </div>
+				</fieldset>
+			</form>
+		</div>
+	</div>
+
+	<!-- SECCION PARA IMPRIMIR UN RECIBO -->
+	<div class="row" style="padding-top: 50px;" ng-show="optionSelected == 2">
+		<h1>2</h1>
+	</div>
+
+	<!-- SECCION PARA VER LOS REGISTROS DE PAGOS -->
+	<div class="row" style="padding-top: 50px;" ng-show="optionSelected == 3">
+		<div class="row">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+				<label for="nombreAlumno">Filtrar:</label>
+				<input type="text" name="nombreAlumno" id="nombreAlumno" class="form-control" required="required" ng-model="filterNombre" placeholder="Escriba: Año, Nombre de Alumno, Carrera, Mes, etc.">
+			</div>
+			<!--
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				<label for="mesPago">Filtrar por mes:</label>
+				<select class="form-control" ng-model="mesPago" ng-change="MesChanged(mesPago)">
+					<option value="" selected="selected"></option>
+					<option ng-repeat="mes in Meses" value="{[{mes.MesID}]}">{[{mes.Nombre}]}</option>
+				</select>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				<label for="anioPago">Filtrar por año:</label>
+				<select class="form-control" ng-change="AnioChanged(anioPago)" ng-model="anioPago">
+					<option value="" selected="selected"></option>
+					<option ng-repeat="anio in Anios" value="{[{anio.AnioID}]}">{[{anio.AnioID}]}</option>
+				</select>
+			</div>
+			<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+				<label for="carreraPago">Filtrar por carrera:</label>
+				<select class="form-control" ng-model="carreraPago" ng-change="AnioChanged(carreraPago)">
+					<option value="" selected="selected"></option>
+					<option ng-repeat="carrera in carreras" value="{[{carrera.CarreraID}]}">{[{carrera.Nombre}]}</option>
+				</select>
+			</div>
+			-->
+		</div>
+		<br>
+		<div class="row">
+			<ul class="list-group" ng-repeat="pago in DatosPagos | filter: filterNombre">
+				<li class="list-group-item active">
+				<span class="text-left">{[{pago.Nombre + " " + pago.ApellidoPeterno + " " + pago.ApellidoMaterno}]}</span>
+				<span style="float: right;">{[{pago.CarreraID}]}</span>
+				</li>
+				<li class="list-group-item">{[{pago.Concepto}]}</li>
+				<li class="list-group-item">${[{pago.CantidadNum}]} MXN</li>
+				<li class="list-group-item">{[{pago.CantidadLetra}]}</li>
+				<li class="list-group-item">{[{pago.Dia + "/" + pago.MesID + "/" + pago.AnoID}]}</li>
+			</ul>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var app = angular.module('sicecui', []);
+	app.config(function($interpolateProvider,$httpProvider) {
+	  $interpolateProvider.startSymbol('{[{');
+	  $interpolateProvider.endSymbol('}]}');
+	  $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded; charset=UTF-8';
+	});
+
+	//insert into Pagos(PersonaID,CantidadNum,CantidadLetra,Concepto,AñoID,MesID) Values(2,1500,'MIL QUINIENTOS PESOS','PAGO MENSUAL NOVIEMBRE 2016',2016,11);
+	app.controller('controller-pagos',function($scope,$http) {
+		$scope.fecha = new Date();
+
+		$http.get("/getCarreras").then(function(response) {
+	        $scope.carreras = response.data;
+	    });
+
+	    $http.get("/getPagos").then(function(response) {
+	        $scope.DatosPagos = response.data;
+	        console.log(response.data);
+	    });
+
+	    $http.get("/getMeses").then(function(response) {
+	        $scope.Meses = response.data;
+	        console.log(response.data);
+	    });
+
+	    $http.get("/getAnios").then(function(response) {
+	        $scope.Anios = response.data;
+	        console.log(response.data);
+	    });
+
+	    $scope.RegistrarClicked = function ($event) {
+	    	$event.preventDefault();
+	    	console.log("/getAlumnos?nombre="+$scope.model_Nombre+"&apepat="+$scope.model_ApePat+"&apemat="+$scope.model_ApeMat+"&carrera="+document.getElementById('CarreraID').value);
+	    	console.log($scope.ClaveAlumno);
+	    	if ($scope.ClaveAlumno === undefined) {
+	    		$event.preventDefault();
+	    		$http({
+			        method : "GET",
+			        url : "/getAlumnos?nombre="+$scope.model_Nombre+"&apepat="+$scope.model_ApePat+"&apemat="+$scope.model_ApeMat+"&carrera="+document.getElementById('CarreraID').value
+			    }).then(function mySucces(response) {
+			    	console.log(response.data[0]);
+			    	if (response.data[0] === undefined) {
+			    		swal("Error!", "No se pudo obtener la clave del alumno.", "error");
+			    	}else{
+			    		$scope.ClaveAlumno = response.data[0].PersonaID;
+			    		//swal("Registrar", "Se obtuvo la clave del alumno, por favor vuelve a dar clic en 'Registrar'.");
+			    		var data = {
+		    				PersonaID : response.data[0].PersonaID,
+		    				CarreraID : document.getElementById('CarreraID').value,
+		    				CantidadNum : document.getElementById('CantidadNum').value,
+		    				CantidadLetra : document.getElementById('CantidadLetra').value,
+		    				Concepto : document.getElementById('Concepto').value,
+		    				AnoID : $scope.fecha.getFullYear(),
+		    				MesID : $scope.fecha.getMonth()+1,
+		    				Dia : $scope.fecha.getDay()
+			    		};
+			    		$http.get('/insertPago', {params: data})
+			    		.then(function(response) {
+					        swal("Registrado!", "El pago del alumno fue registrado con éxito.", "success")
+					        document.getElementById('PersonaID').value = "";
+					        document.getElementById('CantidadNum').value = "";
+					        document.getElementById('CantidadLetra').value = "";
+					        document.getElementById('Concepto').value = "";
+					        document.getElementById('Nombre').value = "";
+					        document.getElementById('ApellidoMaterno').value = "";
+					        document.getElementById('ApellidoPeterno').value = "";
+					    });
+			    	}
+			    }, function myError(response) {
+			        swal("Error!", "No se pudo obtener la clave del alumno.", "error");
+			    });
+	    	}else{
+	    		var data = {
+    				PersonaID : document.getElementById('PersonaID').value,
+    				CarreraID : document.getElementById('CarreraID').value,
+    				CantidadNum : document.getElementById('CantidadNum').value,
+    				CantidadLetra : document.getElementById('CantidadLetra').value,
+    				Concepto : document.getElementById('Concepto').value,
+    				AnoID : $scope.fecha.getFullYear(),
+    				MesID : $scope.fecha.getMonth()+1,
+    				Dia : $scope.fecha.getDay()
+	    		};
+	    		$http.get('/insertPago', {params: data})
+	    		.then(function(response) {
+			        swal("Registrado!", "El pago del alumno fue registrado con éxito.", "success")
+			        document.getElementById('PersonaID').value = "";
+			        document.getElementById('CantidadNum').value = "";
+			        document.getElementById('CantidadLetra').value = "";
+			        document.getElementById('Concepto').value = "";
+			        document.getElementById('Nombre').value = "";
+			        document.getElementById('ApellidoMaterno').value = "";
+			        document.getElementById('ApellidoPeterno').value = "";
+			    });
+	    	}
+	    	$http.get("/getPagos").then(function(response) {
+		        $scope.DatosPagos = response.data;
+		        console.log(response.data);
+		    });
+	    }
+
+
+	    $scope.CarreraSeleccionada = function () {
+	    	if ($scope.model_Nombre === undefined || $scope.model_ApePat === undefined || $scope.model_ApeMat === undefined) {
+	    		swal("Ingresar Nombre Completo", "Por favor, ingresa el nombre completo del alumno para poder determinar su clave.");
+	    	}else{
+			    $http({
+			        method : "GET",
+			        url : "/getAlumnos?nombre="+$scope.model_Nombre+"&apepat="+$scope.model_ApePat+"&apemat="+$scope.model_ApeMat+"&carrera="+$scope.CarreraSelected
+			    }).then(function mySucces(response) {
+			    	console.log(response.data[0]);
+			    	if (response.data[0] === undefined) {
+			    		swal("Error!", "No se pudo obtener la clave del alumno.", "error");
+			    	}else{
+			    		$scope.ClaveAlumno = response.data[0].PersonaID;
+			    	}
+			    }, function myError(response) {
+			        swal("Error!", "No se pudo obtener la clave del alumno.", "error");
+			    });
+	    	}
+	    };
+
+	    $scope.AnioChanged = function (anioPago) {
+	    	console.log(anioPago);
+	    };
+
+	    $scope.MesChanged = function (mesPago) {
+	    	console.log(mesPago);
+	    };
+
+	});
+</script>

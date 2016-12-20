@@ -1,0 +1,89 @@
+<div class="container-fluid" style="padding-top:80px;" ng-controller="controller-inscripcion">
+	<form action="/insertAlumno" method="POST" role="form">
+		<legend>Inscripción de Alumno</legend>
+	
+		<div class="row">
+			<div class="form-group">
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="Nombre">Nombre</label>
+					<input type="text" class="form-control" id="Nombre" name="Nombre">
+
+					<label for="ApellidoPeterno">Apellido Paterno</label>
+					<input type="text" class="form-control" id="ApellidoPeterno" name="ApellidoPeterno">
+
+					<label for="ApellidoMaterno">Apellido Materno</label>
+					<input type="text" class="form-control" id="ApellidoMaterno" name="ApellidoMaterno">
+
+					<label for="Email">Correo Electrónico</label> 
+					<input type="email" class="form-control" id="Email" name="Email">
+
+					<label for="CarreraID">Carrera</label>
+					<select class="form-control" id="CarreraID" name="CarreraID"  required="required">
+						<option ng-repeat="carrera in carreras" value="{[{carrera.CarreraID}]}" selected="selected">{[{carrera.Nombre}]}</option>
+					</select>
+
+					<label for="CuatrimestreID">Cuatrimestre</label>
+					<select class="form-control" id="CuatrimestreID" name="CuatrimestreID">
+						<option value="1">PRIMER CUATRIMESTRE</option>
+						<option value="2">SEGUNDO CUATRIMESTRE</option>
+						<option value="3">TERCER CUATRIMESTRE</option>
+						<option value="4">CUARTO CUATRIMESTRE</option>
+						<option value="5">QUINTO CUATRIMESTRE</option>
+						<option value="6">SEXTO CUATRIMESTRE</option>
+						<option value="7">SEPTIMO CUATRIMESTRE</option>
+						<option value="8">OCTAVO CUATRIMESTRE</option>
+						<option value="9">DECIMO CUATRIMESTRE</option>
+					</select>
+
+					<label for="StatusAlumno">Status</label>
+					<select class="form-control" id="StatusAlumno" name="StatusAlumno">
+						<option ng-repeat="item in status" value="{[{item.StatusID}]}">{[{item.Nombre}]}</option>
+					</select>
+				</div>
+
+				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+					<label for="CURP">CURP</label>
+					<input type="text" class="form-control" id="CURP" name="CURP">
+
+					<label for="municipio">Municipio</label>
+					<input type="text" class="form-control" id="municipio" name="municipio">
+
+					<label for="Entidad">Entidad</label>
+					<input type="text" class="form-control" id="Entidad" name="Entidad">
+
+					<label for="Direccion">Dirección</label>
+					<input type="text" class="form-control" id="Direccion" name="Direccion">
+
+					<label for="Telefono">Teléfono</label>
+					<input type="text" class="form-control" id="Telefono" name="Telefono">
+
+					<label for="Trabaja">Trabaja?</label>
+					<select class="form-control" id="Trabaja" name="Trabaja">
+						<option value="SI">SI</option>
+						<option value="NO">NO</option>
+					</select>
+
+					<button type="submit" class="btn btn-primary pull-right" style="margin-top: 20px;">Inscribir</button>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<script type="text/javascript">
+	var app = angular.module('sicecui', []);
+	app.config(function($interpolateProvider) {
+	  $interpolateProvider.startSymbol('{[{');
+	  $interpolateProvider.endSymbol('}]}');
+	});
+
+	app.controller('controller-inscripcion',function($scope,$http) {
+		$http.get("/getCarreras").then(function(response) {
+	        $scope.carreras = response.data;
+	    });
+
+	    $http.get("/getStatus").then(function(response) {
+	        $scope.status = response.data;
+	    });
+	});
+</script>
