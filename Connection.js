@@ -1,4 +1,5 @@
 //CONEXION A LA BD
+/*
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
   host     : 'localhost',
@@ -9,3 +10,4 @@ var connection = mysql.createConnection({
 connection.connect();
 
 module.exports = connection;
+*/

@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding-top:80px;" ng-controller="controller-inscripcion">
 	<form action="/insertAlumno" method="POST" role="form">
 		<legend>Inscripción de Alumno</legend>
-	
+
 		<div class="row">
 			<div class="form-group">
 				<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
@@ -14,11 +14,11 @@
 					<label for="ApellidoMaterno">Apellido Materno</label>
 					<input type="text" class="form-control" id="ApellidoMaterno" name="ApellidoMaterno">
 
-					<label for="Email">Correo Electrónico</label> 
+					<label for="Email">Correo Electrónico</label>
 					<input type="email" class="form-control" id="Email" name="Email">
 
 					<label for="CarreraID">Carrera</label>
-					<select class="form-control" id="CarreraID" name="CarreraID"  required="required">
+					<select class="form-control" id="CarreraID" name="CarreraID">
 						<option ng-repeat="carrera in carreras" value="{[{carrera.CarreraID}]}" selected="selected">{[{carrera.Nombre}]}</option>
 					</select>
 
